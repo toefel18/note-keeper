@@ -1,5 +1,6 @@
 package nl.toefel.notekeeper
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -8,6 +9,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_note.*
+import kotlinx.android.synthetic.main.content_note.*
 import nl.toefel.notekeeper.data.CourseInfo
 import nl.toefel.notekeeper.data.DataManager
 import nl.toefel.notekeeper.data.NoteInfo
@@ -88,7 +90,22 @@ class NoteActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
+            R.id.action_send_email -> sendNoteAsEmail()
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun sendNoteAsEmail(): Boolean {
+        val course = (spinner_courses.selectedItem as CourseInfo).title
+        val title = titleText.text.toString()
+        val content = contentText.text.toString()
+
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "message/rfc2822"
+        intent.putExtra(Intent.EXTRA_SUBJECT, title)
+        intent.putExtra(Intent.EXTRA_TEXT, "Course: $course:\n\n Content: $content")
+        startActivity(intent)
+
+        return true;
     }
 }

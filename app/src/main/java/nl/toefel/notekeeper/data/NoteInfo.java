@@ -7,6 +7,7 @@ public final class NoteInfo implements Parcelable{
     private CourseInfo mCourse;
     private String mTitle;
     private String mText;
+    private String imageUri;
 
     public NoteInfo(CourseInfo course, String title, String text) {
         mCourse = course;
@@ -18,6 +19,7 @@ public final class NoteInfo implements Parcelable{
         mCourse = source.readParcelable(CourseInfo.class.getClassLoader());
         mTitle = source.readString();
         mText = source.readString();
+        imageUri = source.readString();
     }
 
     public CourseInfo getCourse() {
@@ -42,6 +44,14 @@ public final class NoteInfo implements Parcelable{
 
     public void setText(String text) {
         mText = text;
+    }
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
 
     private String getCompareKey() {
@@ -78,6 +88,7 @@ public final class NoteInfo implements Parcelable{
         dest.writeParcelable(mCourse, 0);
         dest.writeString(mTitle);
         dest.writeString(mText);
+        dest.writeString(imageUri);
     }
 
     public static final Parcelable.Creator<NoteInfo> CREATOR = new Parcelable.Creator<NoteInfo>() {

@@ -6,5 +6,7 @@
           android:title="@string/action_settings"
           android:orderInCategory="100"
           app:showAsAction="never"/>
-    <item android:title="@string/action_send_email" android:orderInCategory="101" android:id="@+id/action_send_email"/>
+    <item android:title="@string/action_cancel" android:orderInCategory="101" android:id="@+id/action_cancel"/>
+    <item android:title="@string/action_take_picture" android:orderInCategory="102" android:id="@+id/action_take_picture"/>
+    <item android:title="@string/action_send_email" android:orderInCategory="103" android:id="@+id/action_send_email"/>
 </menu>

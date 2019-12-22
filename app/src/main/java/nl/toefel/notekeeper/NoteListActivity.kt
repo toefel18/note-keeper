@@ -23,6 +23,12 @@ class NoteListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+        findViewById<FloatingActionButton>(R.id.fab_search).setOnClickListener { view ->
+            val intent = Intent(this, WebActivity::class.java)
+            startActivity(intent)
+        }
+
         initializeDisplayContent()
     }
 
